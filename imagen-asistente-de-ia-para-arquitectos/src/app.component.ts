@@ -1,4 +1,3 @@
-
 import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BlueprintAnalyzerComponent } from './components/blueprint-analyzer/blueprint-analyzer.component';
@@ -10,6 +9,7 @@ type ActiveTab = 'analyzer' | 'chat' | 'generator';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  standalone: true, // <-- ESTA ES LA LÍNEA QUE FALTABA
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,

@@ -12,10 +12,21 @@ export class GeminiService {
     // IMPORTANT: The API key is sourced from environment variables.
     // Do not expose this in the client-side code in a real production app.
     // This is a requirement of the Applet environment.
-    if (!process.env.API_KEY) {
-      throw new Error("API_KEY environment variable not set");
+    // This is a requirement of the Applet environment.
+    // if (!process.env.API_KEY) {
+    //   throw new Error("API_KEY environment variable not set");
+    // }
+    // this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
+    // --- INICIO DE LA CORRECCIÓN LOCAL ---
+    // Llave de API para pruebas
+    const MI_API_KEY = "AIzaSyDt7PHyEt5kf9izra8o4CbIwjIelDs6AX4"; 
+
+    if (!MI_API_KEY) {
+      throw new Error("API_KEY variable no está configurada en gemini.service.ts");
     }
-    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    this.ai = new GoogleGenAI({ apiKey: MI_API_KEY });
+    // --- FIN DE LA CORRECCIÓN LOCAL ---
   }
 
   async analyzeBlueprint(prompt: string, imageBase64: string, mimeType: string): Promise<string> {
