@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GoogleGenAI, GenerateContentResponse, Chat, Type, GenerateVideosOperationResponse } from '@google/genai';
+import { GoogleGenAI, GenerateContentResponse, Chat } from '@google/genai';
 
 // Define a type for the chat history to be more explicit
 export type ChatHistory = { role: 'user' | 'model'; parts: { text: string }[] }[];
