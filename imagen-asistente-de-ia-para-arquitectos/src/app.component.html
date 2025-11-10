@@ -1,0 +1,57 @@
+<div class="flex flex-col h-screen bg-gray-900 text-gray-100">
+  <header class="bg-gray-800 shadow-lg z-10">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <svg class="w-8 h-8 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
+        </svg>
+        <h1 class="text-2xl font-bold text-white tracking-wider">Asistente de IA para Arquitectos</h1>
+      </div>
+      <nav class="flex space-x-1 bg-gray-700 p-1 rounded-lg">
+        <button
+          (click)="setActiveTab('analyzer')"
+          [class.bg-cyan-500]="activeTab() === 'analyzer'"
+          [class.text-white]="activeTab() === 'analyzer'"
+          [class.bg-gray-700]="activeTab() !== 'analyzer'"
+          [class.text-gray-300]="activeTab() !== 'analyzer'"
+          class="px-4 py-2 text-sm font-medium rounded-md hover:bg-cyan-600 transition-colors duration-200">
+          Análisis de Planos
+        </button>
+        <button
+          (click)="setActiveTab('chat')"
+          [class.bg-cyan-500]="activeTab() === 'chat'"
+          [class.text-white]="activeTab() === 'chat'"
+          [class.bg-gray-700]="activeTab() !== 'chat'"
+          [class.text-gray-300]="activeTab() !== 'chat'"
+          class="px-4 py-2 text-sm font-medium rounded-md hover:bg-cyan-600 transition-colors duration-200">
+          Arqui-IA Chat
+        </button>
+        <button
+          (click)="setActiveTab('generator')"
+          [class.bg-cyan-500]="activeTab() === 'generator'"
+          [class.text-white]="activeTab() === 'generator'"
+          [class.bg-gray-700]="activeTab() !== 'generator'"
+          [class.text-gray-300]="activeTab() !== 'generator'"
+          class="px-4 py-2 text-sm font-medium rounded-md hover:bg-cyan-600 transition-colors duration-200">
+          Generación de Conceptos
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow overflow-y-auto">
+    <div class="container mx-auto p-6 h-full">
+      @switch (activeTab()) {
+        @case ('analyzer') {
+          <app-blueprint-analyzer></app-blueprint-analyzer>
+        }
+        @case ('chat') {
+          <app-arch-chatbot></app-arch-chatbot>
+        }
+        @case ('generator') {
+          <app-concept-generator></app-concept-generator>
+        }
+      }
+    </div>
+  </main>
+</div>
