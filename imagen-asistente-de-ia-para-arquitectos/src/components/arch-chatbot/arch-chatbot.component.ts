@@ -49,19 +49,20 @@ export class ArchChatbotComponent implements AfterViewInit {
     this.scrollToBottom();
 
     try {
-      // Add a placeholder for the model's response
-      this.messages.update(m => [...m, { role: 'model', text: '' }]);
+      // Add a placeholder for the model's response (opcional, pero se ve bien)
+      this.messages.update(m => [...m, { role: 'model', text: '...' }]);
+      this.scrollToBottom();
 
-      const stream = await this.chatSession.sendMessageStream({ message: userMessage });
+      // ¡CAMBIO IMPORTANTE!
+      // Reemplazamos sendMessageStream por sendMessage
+      const result = await this.chatSession.sendMessage({ message: userMessage });
+      
+      this.messages.update(m => {
+        // Reemplazamos el placeholder "..." con la respuesta real
+        m[m.length - 1].text = result.text;
+        return [...m];
+      });
 
-      for await (const chunk of stream) {
-        this.messages.update(m => {
-          const lastMessage = m[m.length - 1];
-          lastMessage.text += chunk.text;
-          return [...m];
-        });
-        this.scrollToBottom();
-      }
     } catch (error) {
       console.error('Chat error:', error);
       this.messages.update(m => {
